@@ -69,7 +69,8 @@ AVANCEMENT = {
     "Parties LLM : 10 x 10 manches, 2 modèles": (5, 5, "Terminé"),
     "Réplicateur et écarts à la théorie": (5, 5, "Terminé"),
     "Prompts, parseur CHOIX, scripts d'expérience": (5, 5, "Terminé"),
-    "Rédaction du rapport (80 % en S6)": (5, 5, "En cours"),
+    "Rédaction du rapport (80 % en S6)": (5, 6, "En cours"),
+    "Code finalisé, archive zippée": (6, 6, "En cours"),
 }
 
 

@@ -1,0 +1,69 @@
+{
+ "semaine": 6,
+ "titre_livrable": "Mini-livrable de la semaine 6 : code finalisé et rapport à 80 %",
+ "date": "16 décembre 2026",
+ "membres": [
+  "TSETSE Komla Edem Wilfried (IDIA3)",
+  "SADOUR Assia (IDIA3)",
+  "MARZAQ Jihane",
+  "ZERBAOUI Marwane"
+ ],
+ "objet": "Le projet n° 6 compare des stratégies classiques du dilemme du prisonnier répété et des agents LLM locaux. Les expériences étant terminées en semaine 5, la semaine 6 est consacrée à la finalisation du code, à ses tests et à la rédaction du rapport, dont le diagramme de Gantt fait partie.",
+ "realise": [
+  {
+   "titre": "2.1 Organisation de l'équipe",
+   "texte": "Les rôles sont ceux d'après la rotation de la semaine 4. Le point d'avancement est présenté par Assia. Chaque chapitre du rapport est relu par le membre dont le rôle en est le plus proche.",
+   "table": [
+    [
+     "Membre",
+     "Rôle (semaines 5 à 7)",
+     "Chapitres relus"
+    ],
+    [
+     "Jihane",
+     "Cheffe de projet",
+     "introduction (1), organisation et planification (7), conclusion (8)"
+    ],
+    [
+     "Wilfried",
+     "Quant / Python",
+     "cadre théorique (2), conventions et fonctions Python (3)"
+    ],
+    [
+     "Assia",
+     "Développeuse de l'agent",
+     "agent et joueurs LLM (4)"
+    ],
+    [
+     "Marwane",
+     "Testeur",
+     "expériences (5), tests et qualité (6)"
+    ]
+   ]
+  },
+  {
+   "titre": "2.2 Code finalisé",
+   "texte": "La suite pytest compte 74 tests, tous verts : 25 pour les fonctions pures de jeux.py, 16 pour les outils et la boucle de l'agent hors ligne, 16 pour le joueur LLM, 6 pour les contrôles des essais de l'agent et 11 pour le module d'expériences. Elle s'exécute en quelques secondes. Les résultats de parties LLM sont dans resultats/, avec le modèle, son empreinte, la version d'Ollama, la température, la graine et le matériel. Aucun eval ni exec n'apparaît dans le code, et Ollama n'écoute que sur 127.0.0.1. Le code du cours (agent_tj_sma.py) n'était pas dans nos supports : l'agent est une reconstruction d'après le guide, ce que le rapport écrit explicitement."
+  },
+  {
+   "titre": "2.3 Rapport rédigé à 80 %",
+   "texte": "Les huit chapitres sont rédigés : introduction, cadre théorique, conventions et fonctions Python, agent et joueurs LLM, expériences, tests et qualité, organisation et planification, conclusion. Le chapitre 7 contient le Gantt prévisionnel et le Gantt réalisé (docs/gantt_previsionnel.png et docs/gantt_realise.png). Chaque chiffre du chapitre 5 est repris de la sortie du notebook 03 ou d'un fichier de resultats/. Restent à faire environ 20 % du travail : l'assemblage et la mise en page du PDF, la relecture croisée, le remplacement des emplacements encore ouverts par des données réelles et la vérification que le nombre de tests est le même dans tous les chapitres."
+  },
+  {
+   "titre": "2.4 Ce que le chapitre des expériences rapporte",
+   "texte": "Sur 30 graines, le rancunier est premier dans toutes les graines sans bruit (2,664 points par manche), devant tit-for-tat (2,540) ; à 5 % de bruit, toujours trahir (2,369) devance le rancunier (2,359). Les parties LLM (10 parties de 10 manches par configuration, contre tit-for-tat) donnent une coopération moyenne de 63 % pour llama3.1 et de 68 % pour qwen2.5 avec horizon annoncé, là où l'induction à rebours prédit 0 %. Nous rapportons cet écart tel quel. Il faut le lire avec deux nuances : contre tit-for-tat, la meilleure réponse sur dix manches (cherchée parmi les 1 024 séquences) est de coopérer neuf fois puis de trahir, pour 3,2 points par manche, ce que fait qwen2.5 dans trois parties sans annonce ; et chaque configuration ne compte que 3 trajectoires distinctes sur 10 parties. Le chapitre contient aussi une section de limites : un seul adversaire, 10 manches, deux modèles, un seul prompt, puissance faible, réponses brutes des parties Colab non rapatriées."
+  }
+ ],
+ "choix": "Nous présentons l'écart à la théorie comme une observation et non comme un résultat général. L'unité statistique reste la partie, les intervalles sont des bootstraps sur les parties, et les valeurs p sont accompagnées de la mention des trajectoires distinctes, qui en limite la portée. Les chapitres décrivent aussi ce que nos tests ne montrent pas : le faux modèle (scripté) prouve la mécanique, jamais la qualité d'un vrai modèle.",
+ "ecarts": "Prévu pour la semaine 6 : code finalisé avec ses tests, rapport rédigé à 80 %, Gantt dans le rapport. Réalisé : le code final et ses 74 tests verts, le rapport rédigé à 80 % avec les deux Gantt. L'écart de calendrier déjà relevé reste celui de la semaine 5 : les parties LLM, prévues en semaines 5 et 6, ont été terminées en semaine 5 grâce au GPU, ce qui a libéré la semaine 6 pour le rapport. Restent à relever à la séance : les commits de chaque membre (⟦à compléter : sortie de git shortlog -sn⟧), la relecture des pull requests par un autre membre (⟦à compléter : nombre de PR relues et fusionnées⟧), la présence des quatre membres (⟦à compléter : présence⟧), les réponses du professeur aux questions précédentes sur le code du cours, l'adversaire des agents et l'usage d'un GPU gratuit (⟦à compléter : réponses du professeur⟧), et l'état des tâches du classeur docs/gantt_source.xlsx à la fin de la semaine 6, avant de régénérer l'image du Gantt réalisé (⟦à compléter : état des tâches S6⟧).",
+ "questions": [
+  "Pour le chapitre des expériences, est-il préférable de présenter l'écart à l'induction à rebours comme un résultat principal, ou comme une observation exploratoire, compte tenu des 3 trajectoires distinctes par configuration ?",
+  "Quels éléments l'archive finale doit-elle contenir en plus du code, des notebooks, des résultats et du rapport ? (⟦à compléter : réponse du professeur⟧)"
+ ],
+ "plan": "La semaine 7 est la dernière : remise du rapport et de l'archive du projet, produite avec l'outil tools/archiver.py, puis bilan du Gantt réalisé contre le Gantt prévu, avec les limites de l'étude et ce que nous referions.",
+ "annexe": {
+  "titre": "Annexe : diagramme de Gantt prévu et réalisé à la fin de la semaine 6",
+  "image": "docs/gantt_realise.png",
+  "legende": "Prévu en gris, réalisé en vert (terminé) ou orange (en cours), à la fin de la semaine 6."
+ }
+}
