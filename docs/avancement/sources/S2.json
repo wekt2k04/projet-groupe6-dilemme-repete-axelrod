@@ -1,0 +1,41 @@
+{
+  "semaine": 2,
+  "titre_livrable": "Mini-livrable de la semaine 2 : prototype Python",
+  "date": "18 novembre 2026 (date à confirmer, jour férié)",
+  "membres": ["TSETSE Komla Edem Wilfried (IDIA3)", "SADOUR Assia (IDIA3)", "MARZAQ Jihane", "ZERBAOUI Marwane"],
+  "objet": "Le projet n° 6 simule un tournoi d'Axelrod entre six stratégies du dilemme du prisonnier répété, mesure l'effet du bruit et l'évolution d'une population par la dynamique du réplicateur, puis fera jouer des agents LLM locaux pour les comparer aux stratégies classiques. La semaine 2 est consacrée au prototype Python : les formules sont écrites et expliquées, et un notebook retrouve les résultats du cours.",
+  "realise": [
+    {
+      "titre": "2.1 Organisation de l'équipe",
+      "texte": "Les rôles de la semaine 1 sont maintenus jusqu'à la rotation de la fin de la semaine 4. Le point d'avancement de cette semaine est présenté par Assia.",
+      "table": [["Membre", "Rôle (semaines 1 à 4)", "Travail de la semaine 2"],
+               ["Wilfried", "Chef de projet et théorie", "notebook 01, Gantt réalisé, point d'avancement"],
+               ["Assia", "Quant / Python", "module jeux.py complété"],
+               ["Marwane", "Développeur de l'agent", "installation d'Ollama sur son poste"],
+               ["Jihane", "Testeuse", "tests du tournoi, du réplicateur et du seuil"]]
+    },
+    {
+      "titre": "2.2 Module jeux.py",
+      "texte": "Le prototype de la semaine 1 est complété. Les fonctions valident leurs entrées (nombre de manches au moins égal à 1, bruit dans [0, 1], noms de stratégies pris dans une liste fermée, jamais de code évalué). Une fonction match_detail renvoie aussi les historiques des coups exécutés, ce qui servira aux mesures de coopération par manche. Le TFT généreux, qui pardonne une trahison avec la probabilité 1/3, est ajouté comme septième stratégie hors du dictionnaire du guide. Le seuil de TFT (2/3) et l'estimation par simulation de l'écart « trahir moins coopérer » contre un rancunier avec arrêt aléatoire sont codés. La graine par défaut du tournoi passe à 0, comme dans le guide. La suite pytest compte 25 tests, tous verts."
+    },
+    {
+      "titre": "2.3 Notebook 01 : résultats du cours retrouvés",
+      "texte": "Le notebook retrouve que (D, D) est l'unique équilibre de Nash du jeu à une manche et qu'il est Pareto-dominé par (C, C). L'induction à rebours donne « trahir à chaque manche » pour n = 1, 2, 3, 5 et 200, avec un gain total de n × P par joueur, soit 200 sur 200 manches contre 600 pour une coopération mutuelle : c'est le paradoxe du mille-pattes. Les seuils d'actualisation sont retrouvés par le calcul, 1/2 pour le rancunier et 2/3 pour TFT (à δ = 2/3, coopérer et alterner trahir et coopérer valent tous deux 9), et par simulation avec arrêt aléatoire sur 60 000 parties : l'écart « trahir moins coopérer » vaut +0,655 ± 0,009 à δ = 0,4 (théorie +0,667), −0,016 ± 0,012 à δ = 0,5 (théorie 0) et −0,997 ± 0,016 à δ = 0,6 (théorie −1)."
+    },
+    {
+      "titre": "2.4 Premiers résultats du tournoi",
+      "texte": "Sur 200 manches, 20 répétitions par paire et graine 0, le classement sans bruit est rancunier (2,663), TFT (2,541), Pavlov (2,466), toujours trahir (2,340), toujours coopérer (2,251), aléatoire (1,966). Avec ε = 0,05, toujours trahir (2,368) et le rancunier (2,357) passent devant Pavlov (2,102), TFT (2,033), l'aléatoire (1,983) et toujours coopérer (1,623). Ces classements viennent d'une seule graine : l'écart entre les deux premiers à ε = 0,05 est dans le bruit d'échantillonnage probable et sera tranché avec plusieurs graines."
+    }
+  ],
+  "choix": "Quatre points sont figés cette semaine. La graine de référence est 0 et les classements se calculent sur 20 répétitions par paire. Les entrées invalides lèvent une ValueError, et un nom de stratégie inconnu est refusé. Le TFT généreux reste hors du dictionnaire STRATEGIES du guide, dans un dictionnaire étendu. Le seuil de TFT retenu est le plus grand des deux seuils testés, soit 2/3.",
+  "ecarts": "Prévu pour la semaine 2 : formules écrites et expliquées, notebook qui retrouve les résultats du cours, conventions figées, jeux.py complété, tests du seuil δ. Réalisé : tout cela est fait ; les tests du seuil par simulation sont déjà écrits, mais la tâche de tests reste en cours jusqu'à la semaine 3, où elle s'étend aux outils de l'agent. Restent à relever à la séance : le nombre de commits par membre (⟦à relever avec git shortlog -sn⟧) et l'installation d'Ollama chez Assia, Jihane et Marwane (⟦à confirmer en séance⟧). Le code du cours (agent_tj_sma.py) n'est toujours pas dans nos supports (⟦réponse du professeur⟧).",
+  "questions": [
+    "Pouvez-vous nous transmettre agent_tj_sma.py, les modules de jeux et le chapitre 6, ou confirmer que nous devons reconstruire l'agent d'après le guide ?"
+  ],
+  "plan": "La semaine 3 est consacrée aux outils LangChain. Les outils tournoi_axelrod et replicateur seront écrits avec des types annotés, une docstring claire, une sortie JSON et des paramètres plafonnés, puis appelés avec .invoke() sans modèle de langage. Un faux modèle étiqueté « scripté » permettra de tester la boucle de l'agent hors ligne, et les premiers tests des outils passeront avec pytest.",
+  "annexe": {
+    "titre": "Annexe : diagramme de Gantt réalisé à la fin de la semaine 2",
+    "image": "docs/gantt_realise.png",
+    "legende": "Prévu en gris, réalisé en vert (terminé) ou orange (en cours), à la fin de la semaine 2."
+  }
+}
