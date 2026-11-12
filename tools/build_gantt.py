@@ -65,6 +65,11 @@ AVANCEMENT = {
     "Chaîne prompt | modèle | parseur, format CHOIX": (4, 4, "Terminé"),
     "Premiers classements selon ε, TFT généreux": (4, 4, "Terminé"),
     "Gantt mis à jour (mi-parcours)": (4, 4, "Terminé"),
+    "Protocole complet, graines, tableaux": (5, 5, "Terminé"),
+    "Parties LLM : 10 x 10 manches, 2 modèles": (5, 5, "Terminé"),
+    "Réplicateur et écarts à la théorie": (5, 5, "Terminé"),
+    "Prompts, parseur CHOIX, scripts d'expérience": (5, 5, "Terminé"),
+    "Rédaction du rapport (80 % en S6)": (5, 5, "En cours"),
 }
 
 

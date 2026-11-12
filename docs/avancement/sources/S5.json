@@ -1,0 +1,68 @@
+{
+ "semaine": 5,
+ "titre_livrable": "Mini-livrable de la semaine 5 : protocole complet et résultats",
+ "date": "9 décembre 2026",
+ "membres": [
+  "TSETSE Komla Edem Wilfried (IDIA3)",
+  "SADOUR Assia (IDIA3)",
+  "MARZAQ Jihane",
+  "ZERBAOUI Marwane"
+ ],
+ "objet": "Le projet n° 6 compare des stratégies classiques du dilemme du prisonnier répété et des agents LLM locaux. La semaine 5 exécute le protocole complet : tournois sur 30 graines avec intervalles de confiance, dynamique du réplicateur, et au moins 10 parties de 10 manches par configuration (deux modèles Ollama, horizon annoncé ou non) contre tit-for-tat.",
+ "realise": [
+  {
+   "titre": "2.1 Organisation de l'équipe",
+   "texte": "Les rôles ont tourné à la fin de la semaine 4. Le point d'avancement est présenté par Wilfried.",
+   "table": [
+    [
+     "Membre",
+     "Rôle (semaines 5 à 7)",
+     "Travail de la semaine 5"
+    ],
+    [
+     "Marwane",
+     "Testeur",
+     "parties LLM et contrôle des résultats"
+    ],
+    [
+     "Wilfried",
+     "Quant / Python",
+     "notebook 03, protocole multi-graines"
+    ],
+    [
+     "Assia",
+     "Développeuse de l'agent",
+     "tests du module d'expériences, relecture du prompt"
+    ],
+    [
+     "Jihane",
+     "Cheffe de projet",
+     "point d'avancement, Gantt réalisé"
+    ]
+   ]
+  },
+  {
+   "titre": "2.2 Stratégies classiques sur 30 graines",
+   "texte": "Le module experiences.py rejoue le tournoi sur 30 graines (10 répétitions par paire, 200 manches) et rapporte la moyenne, l'intervalle de confiance entre graines, le rang moyen et la fraction de graines où chaque stratégie arrive première. Sans bruit, le rancunier est premier dans 100 % des graines (2,664), devant TFT (2,540). Avec ε = 0,05, toujours trahir (2,369) devance le rancunier (2,359) et il est premier dans 73 % des graines ; à ε = 0,01, le rancunier (2,357) et toujours trahir (2,348) se partagent la première place (57 % et 43 %), ce qui interdit de les départager. TFT passe du rang 2 à ε = 0 au rang moyen 4,1 à ε = 0,05, et le TFT généreux ne fait pas mieux (rang moyen 5,8 sur sept stratégies). Pour le réplicateur à parts égales, la population finale est dominée par le rancunier sans bruit (100 % des graines), par Pavlov à ε = 0,05 (part 0,999), et à ε = 0,01 le résultat dépend de la graine (rancunier dominant dans 60 % des graines, Pavlov dans 37 %, écart-type 0,45 sur les parts)."
+  },
+  {
+   "titre": "2.3 Agents LLM contre TFT",
+   "texte": "Les 4 configurations ont été jouées à raison de 10 parties de 10 manches (llama3.1 et qwen2.5, horizon annoncé ou non), avec une température de 0,7, une graine par partie, aucune réponse hors format sur les 400 coups. Le calcul s'est fait sur un GPU T4 gratuit (Google Colab, Ollama 0.40.16, mêmes modèles, empreintes consignées) ; six parties rejouées en local sur CPU (Ollama 0.40.11) ont donné exactement les mêmes trajectoires. La coopération moyenne par partie est de 63 % pour llama3.1 avec horizon annoncé (IC95 bootstrap 36 à 90 %) et de 31 % sans annonce (16 à 44 %), de 68 % (64 à 72 %) et 83 % (80 à 86 %) pour qwen2.5. Le test de Mann-Whitney sur la coopération par partie donne p = 0,057 pour llama3.1 et p < 0,001 pour qwen2.5. Chaque configuration ne compte que 3 trajectoires distinctes sur 10 parties : les modèles sont presque déterministes à cette température, et les intervalles sont calculés sur les parties, pas sur les coups. qwen2.5 coopère à 100 % à la première manche, puis trahit en fin de partie (10 % de coopération à la dernière manche avec horizon annoncé, 60 % sans annonce) : un effondrement partiel de la fin vers le début, conforme en esprit à l'induction à rebours, mais sans trahison dès la première manche comme la théorie le prédit. llama3.1 est bimodal : 30 % des parties sont entièrement trahies, les autres presque entièrement coopératives avec une trahison isolée. Les scores moyens par manche sont de 2,45, 1,85, 2,82 et 2,88, tous inférieurs aux 3 de TFT contre TFT."
+  },
+  {
+   "titre": "2.4 Tests",
+   "texte": "La suite pytest compte 74 tests, tous verts, dont 11 pour le module d'expériences (intervalle de Wilson, bootstrap au niveau des parties, comptage des défauts, trajectoires distinctes, comparaison des horizons, multi-graines)."
+  }
+ ],
+ "choix": "L'unité statistique est la partie, pas le coup, parce que les coups d'une partie dépendent les uns des autres et que les parties se répètent. Les graines sont les mêmes d'une configuration à l'autre, ce qui apparie les comparaisons. Les réponses hors format seraient comptées à part ; il n'y en a eu aucune, donc la valeur par défaut « coopérer » n'a pas joué.",
+ "ecarts": "Prévu pour la semaine 5 : protocole complet exécuté, tableaux, tests verts. Réalisé : tout cela, avec les parties LLM terminées en semaine 5 au lieu de la semaine 6 grâce au GPU. Limites à écrire dans le rapport : un seul adversaire (TFT), 10 manches, 3 trajectoires distinctes par configuration, deux modèles, un seul prompt, peu de puissance statistique. Les réponses brutes complètes des parties Colab n'ont pas été rapatriées (seules la première et la dernière réponse de la partie 1 le sont), alors que celles des 6 parties locales le sont. Restent à relever à la séance : les commits de chaque membre (⟦à relever avec git shortlog -sn⟧).",
+ "questions": [
+  "Faut-il rapporter les résultats par partie malgré le faible nombre de trajectoires distinctes, ou ajouter des températures et des invites différentes pour élargir l'échantillon ?"
+ ],
+ "plan": "La semaine 6 est consacrée aux tests et à la rédaction : code finalisé, rapport rédigé à 80 % avec le Gantt, chaque chiffre relié à sa sortie, et une section de limites qui dit ce que l'on ne peut pas conclure.",
+ "annexe": {
+  "titre": "Annexe : diagramme de Gantt prévu et réalisé à la fin de la semaine 5",
+  "image": "docs/gantt_realise.png",
+  "legende": "Prévu en gris, réalisé en vert (terminé) ou orange (en cours), à la fin de la semaine 5."
+ }
+}

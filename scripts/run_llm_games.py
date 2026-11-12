@@ -7,8 +7,8 @@ Usage depuis la racine du dépôt (Ollama lancé, modèle téléchargé) :
 
 Chaque ligne du fichier est une partie (coups exécutés, scores moyens par manche, compteur de réponses sans « CHOIX : »,
 réponses brutes) ; la première ligne décrit la configuration et la version du modèle. Le script reprend où il s'est
-arrêté si le fichier existe déjà. Durée estimée sur un CPU de portable : 8 à 15 s par coup, soit 15 à 25 minutes par
-configuration de 10 parties de 10 manches. Aucun texte de modèle n'est exécuté ; Ollama doit n'écouter que sur 127.0.0.1.
+arrêté si le fichier existe déjà. Durée estimée sur un CPU de portable : 4 à 8 s par coup, soit 7 à 10 minutes par
+configuration de 10 parties de 10 manches (mesuré ; environ 30 s sur un GPU T4). Aucun texte de modèle n'est exécuté ; Ollama doit n'écouter que sur 127.0.0.1.
 """
 import argparse
 import json

@@ -5,7 +5,7 @@ Usage depuis la racine du dépôt (Ollama lancé, modèle téléchargé) :
     python scripts/essai_agent_ollama.py --modele llama3.1 --essais 3
 Chaque question est posée `--essais` fois (jamais de conclusion sur un seul essai). Sortie : resultats/agent_<modele>.jsonl,
 avec les appels d'outils, les arguments, le contrôle automatique (src/controles_agent.py, tolérant sur le type des nombres) et la réponse finale. Durée estimée sur un CPU de portable :
-20 à 60 s par question, soit 30 à 45 minutes pour 5 questions x 3 essais. Le texte d'un modèle n'est jamais exécuté.
+20 à 300 s par question, soit 30 à 60 minutes par modèle pour 5 questions x 3 essais (environ 2 minutes sur un GPU T4). Le texte d'un modèle n'est jamais exécuté.
 """
 import argparse
 import json
