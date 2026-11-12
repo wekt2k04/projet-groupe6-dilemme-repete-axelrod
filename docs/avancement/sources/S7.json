@@ -1,0 +1,45 @@
+{
+ "semaine": 7,
+ "titre_livrable": "Mini-livrable de la semaine 7 : remise et bilan",
+ "date": "23 décembre 2026",
+ "membres": [
+  "TSETSE Komla Edem Wilfried (IDIA3)",
+  "SADOUR Assia (IDIA3)",
+  "MARZAQ Jihane",
+  "ZERBAOUI Marwane"
+ ],
+ "objet": "Le projet n° 6 comparait des stratégies classiques du dilemme du prisonnier répété et des agents LLM locaux. La semaine 7 est la dernière : remise du rapport et de l'archive du projet, bilan du diagramme de Gantt prévu contre réalisé, limites de l'étude et ce que nous referions.",
+ "realise": [
+  {
+   "titre": "2.1 Organisation de l'équipe",
+   "texte": "Les rôles sont ceux d'après la rotation (Jihane cheffe de projet, Wilfried quant, Assia développeuse de l'agent, Marwane testeur). Le point d'avancement est présenté par Marwane, qui clôt la série des présentations : Wilfried en semaines 1 et 5, Assia en 2 et 6, Marwane en 3 et 7, Jihane en 4. ⟦à compléter : contribution de chaque membre à la remise et commits de la semaine, d'après git shortlog -sn⟧."
+  },
+  {
+   "titre": "2.2 Remise du rapport et de l'archive",
+   "texte": "Le rapport compte huit chapitres : introduction, cadre théorique, conventions et fonctions Python, agent et joueurs LLM, expériences, tests et qualité, organisation et planification, conclusion. L'archive du projet est produite avec l'outil tools/archiver.py. Avant la remise, les emplacements encore ouverts sont remplacés par des données réelles et le nombre de tests (74) est vérifié dans tous les chapitres. ⟦à compléter : date et heure de la remise, nom et taille de l'archive, contenu vérifié, accusé de réception⟧."
+  },
+  {
+   "titre": "2.3 Bilan du Gantt",
+   "texte": "Le Gantt prévisionnel comptait 19 tâches en cinq phases. À la fin de la semaine 5, 16 étaient terminées, une était en cours (la rédaction du rapport) et deux restaient à faire (code finalisé avec archive, bilan du Gantt). Trois écarts ressortent. Les parties LLM, prévues en semaines 5 et 6, ont été terminées en semaine 5 : le calcul sur un GPU gratuit (2 à 3 secondes par partie une fois le modèle chargé, contre 42 à 84 secondes sur CPU) a rendu possible de jouer les quatre configurations dans la semaine. Le rapport final est livré en semaine 7, comme le jalon de remise, après une rédaction à 80 % en semaine 6. Enfin, les essais de la question 4 de l'agent sur CPU, perdus par un bug de notre contrôle (un arrondi appliqué à une chaîne), ont été rejoués sur le GPU : 30 essais sur 30 y sont conformes. ⟦à compléter : état final des 19 tâches dans docs/gantt_source.xlsx, nombre de tâches terminées et semaines de fin réelles⟧."
+  },
+  {
+   "titre": "2.4 Résultats et limites",
+   "texte": "Les stratégies classiques retrouvent le cours : seuils de δ de 1/2 et 2/3, classement dépendant du bruit (rancunier premier sans bruit à 2,664, toujours trahir premier à 5 % de bruit à 2,369), réplicateur sensible à la graine à 1 % de bruit. Les agents LLM contre tit-for-tat coopèrent à 63 % (llama3.1) et 68 % (qwen2.5) avec horizon annoncé, au lieu de 0 % prédit par l'induction à rebours. qwen2.5 coopère à la première manche puis trahit en fin de partie ; llama3.1 est bimodal, avec 3 parties sur 10 entièrement trahies. Nous n'en tirons aucune conclusion générale : un seul adversaire, 10 manches, deux modèles, un seul prompt, 3 trajectoires distinctes par configuration, puissance faible, et des réponses brutes des parties Colab non rapatriées. Côté agent, les 30 essais sur GPU sont conformes (questions 1 à 4 : outil attendu, question 5 hors sujet : aucun outil), à raison de trois essais par question seulement. Les 74 tests passent, mais ils ne mesurent pas la qualité d'un modèle : le faux modèle (scripté) prouve la mécanique, rien de plus."
+  },
+  {
+   "titre": "2.5 Ce que nous referions",
+   "texte": "Nous ferions varier la température et le prompt dès le début, pour obtenir plus de trajectoires distinctes. Nous opposerions les modèles à d'autres adversaires et allongerions les parties, nous rapatrierions toutes les réponses brutes quel que soit le matériel, et nous testerions le dispositif de contrôle avant de lancer les essais."
+  }
+ ],
+ "choix": "Le bilan rapporte les écarts du calendrier tels qu'ils sont, y compris ceux qui n'apparaissent pas comme un retard sur le Gantt, et les limites sans les atténuer. Nous ne présentons aucun résultat sur les agents LLM comme une loi générale. L'unité statistique est restée la partie, avec des intervalles bootstrap sur les parties et jamais sur les 100 coups, parce que les coups d'une partie dépendent les uns des autres et que chaque configuration ne compte que 3 trajectoires distinctes.",
+ "ecarts": "Prévu : remise du rapport et de l'archive en semaine 7, bilan du Gantt. Les écarts de calendrier sont ceux du paragraphe 2.3. Restent à relever à la séance : la remise effective (⟦à compléter : date, heure et confirmation de réception⟧), les commits de chaque membre sur l'ensemble du projet (⟦à compléter : sortie de git shortlog -sn⟧), les pull requests relues par un autre membre (⟦à compléter : décompte⟧), la présence aux sept séances (⟦à compléter : présence⟧) et les réponses du professeur à nos questions sur le code du cours, l'adversaire des agents LLM et l'usage d'un GPU gratuit (⟦à compléter : réponses du professeur⟧).",
+ "questions": [
+  "Le rapport et l'archive remis répondent-ils aux attentes sur le contenu et la présentation ? (⟦à compléter : retour du professeur⟧)"
+ ],
+ "plan": "Aucune semaine ne suit. Après la remise, restent éventuellement les corrections demandées (⟦à compléter : retours du professeur après la remise⟧).",
+ "annexe": {
+  "titre": "Annexe : diagramme de Gantt prévu et réalisé à la fin du projet",
+  "image": "docs/gantt_realise.png",
+  "legende": "Prévu en gris, réalisé en vert (terminé) ou orange (en cours), à la fin de la semaine 7."
+ }
+}
