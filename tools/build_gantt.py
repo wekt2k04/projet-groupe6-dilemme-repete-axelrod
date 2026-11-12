@@ -58,7 +58,9 @@ AVANCEMENT = {
     "Formules, hypothèses, seuils δ (1/2 et 2/3)": (1, 2, "Terminé"),
     "jeux.py : match, tournoi, réplicateur": (1, 2, "Terminé"),
     "Notebook 01 : retrouver les résultats du cours": (2, 2, "Terminé"),
-    "Tests pytest et seuil δ par Monte-Carlo": (2, 2, "En cours"),
+    "Tests pytest et seuil δ par Monte-Carlo": (2, 3, "Terminé"),
+    "Outils @tool tournoi_axelrod et replicateur": (3, 3, "Terminé"),
+    "Tests hors ligne (faux modèle scripté)": (3, 3, "Terminé"),
 }
 
 
