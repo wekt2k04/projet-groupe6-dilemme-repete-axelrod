@@ -61,6 +61,10 @@ AVANCEMENT = {
     "Tests pytest et seuil δ par Monte-Carlo": (2, 3, "Terminé"),
     "Outils @tool tournoi_axelrod et replicateur": (3, 3, "Terminé"),
     "Tests hors ligne (faux modèle scripté)": (3, 3, "Terminé"),
+    "Agent LangChain avec Ollama (verbose=True)": (4, 4, "Terminé"),
+    "Chaîne prompt | modèle | parseur, format CHOIX": (4, 4, "Terminé"),
+    "Premiers classements selon ε, TFT généreux": (4, 4, "Terminé"),
+    "Gantt mis à jour (mi-parcours)": (4, 4, "Terminé"),
 }
 
 

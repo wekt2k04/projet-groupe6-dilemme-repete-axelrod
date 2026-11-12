@@ -1,0 +1,69 @@
+{
+ "semaine": 4,
+ "titre_livrable": "Mini-livrable de la semaine 4 : agent et mi-parcours",
+ "date": "2 décembre 2026",
+ "membres": [
+  "TSETSE Komla Edem Wilfried (IDIA3)",
+  "SADOUR Assia (IDIA3)",
+  "MARZAQ Jihane",
+  "ZERBAOUI Marwane"
+ ],
+ "objet": "Le projet n° 6 simule un tournoi d'Axelrod entre stratégies du dilemme du prisonnier répété, mesure l'effet du bruit et de la dynamique du réplicateur, puis fait jouer des agents LLM locaux (Ollama) pour les comparer aux stratégies classiques. La semaine 4 est la mi-parcours : l'agent est testé avec un vrai modèle, le joueur LLM est construit, les rôles tournent et le Gantt prévu est comparé au réalisé.",
+ "realise": [
+  {
+   "titre": "2.1 Rotation des rôles",
+   "texte": "À la fin de la semaine 4, les rôles tournent d'un cran, comme l'exige le guide. Le point d'avancement de cette semaine est présenté par Jihane.",
+   "table": [
+    [
+     "Membre",
+     "Rôle (semaines 1 à 4)",
+     "Rôle après la rotation"
+    ],
+    [
+     "Wilfried",
+     "Chef de projet et théorie",
+     "Quant / Python"
+    ],
+    [
+     "Assia",
+     "Quant / Python",
+     "Développeuse de l'agent"
+    ],
+    [
+     "Marwane",
+     "Développeur de l'agent",
+     "Testeur"
+    ],
+    [
+     "Jihane",
+     "Testeuse",
+     "Cheffe de projet"
+    ]
+   ]
+  },
+  {
+   "titre": "2.2 Joueur LLM",
+   "texte": "Le joueur LLM suit la signature d'une stratégie, ce qui permet de réutiliser match_detail sans le modifier. Il construit un prompt (règles, gains, historique des coups exécutés, numéro de manche, horizon annoncé ou non), appelle le modèle par une chaîne prompt, modèle, parseur et lit la dernière ligne « CHOIX : COOPERER » ou « CHOIX : TRAHIR » avec une expression régulière. Une réponse sans cette ligne reçoit le coup par défaut « coopérer », pour ne pas biaiser vers la trahison prédite par la théorie, et est comptée à part. Seize tests hors ligne avec le faux modèle (scripté) vérifient l'analyse des réponses, le comptage des défauts et le fait qu'un texte ressemblant à du code n'est jamais exécuté."
+  },
+  {
+   "titre": "2.3 Agent testé avec Ollama",
+   "texte": "L'agent a d'abord été testé avec le faux modèle (scripté), puis avec llama3.1 et qwen2.5 sur cinq questions posées trois fois chacune, avec un contrôle automatique de l'outil appelé et de ses arguments. Sur un GPU T4 (Google Colab, même version d'Ollama, mêmes modèles), les 30 essais sont conformes : Q1 à Q4 appellent l'outil attendu (deux appels de tournoi pour Q4) et Q5, hors sujet, n'appelle aucun outil. En local sur CPU, llama3.1 réussit Q1, Q2, Q3 et Q5 trois fois sur trois, avec 19 à 315 secondes par essai contre 1 à 15 secondes sur GPU. Les trois essais Q4 locaux n'ont pas été exploitables : un bug de notre propre contrôle (un arrondi appliqué à une chaîne) a masqué le résultat ; le contrôle a été corrigé et ces essais ont été rejoués sur le GPU. llama3.1 écrit parfois les nombres des arguments sous forme de chaînes (« 200 ») ; l'outil les convertit et le calcul est correct, ce qui a conduit à rendre le contrôle tolérant sur le type."
+  },
+  {
+   "titre": "2.4 Premières expériences",
+   "texte": "Une partie pilote de 3 manches avec llama3.1 contre TFT (coups C, C, D, aucune réponse hors format) a validé la chaîne complète : prompt, appel, lecture, historique. Elle n'a aucune valeur statistique. Côté stratégies classiques, le classement selon ε et le TFT généreux sont ceux du notebook 01 ; un résultat à retenir : à ε = 0,01, les parts finales du réplicateur dépendent du nombre de répétitions du tournoi (rancunier 0,563 et Pavlov 0,437 avec 5 répétitions, 0,929 et 0,071 avec 20), ce qui impose un protocole multi-graines."
+  }
+ ],
+ "choix": "Le prompt annonce ou non l'horizon, car c'est une variable d'expérience. La température d'Ollama est fixée à 0,7 avec une graine par partie, et la version du modèle (empreinte) et celle du serveur sont consignées avec chaque fichier de résultats. Une seule série à la fois est lancée, et Ollama n'écoute que sur 127.0.0.1.",
+ "ecarts": "Prévu pour la semaine 4 : agent testé avec le faux modèle puis avec Ollama, premières expériences, rotation, Gantt prévu contre réalisé. Réalisé : tout cela, avec un écart sur les essais Q4 locaux, rejoués sur GPU. Difficultés : le calcul sur CPU est lent (8 à 14 secondes par coup de LLM) ; nous avons donc utilisé un GPU gratuit pour les essais. Sur le poste du chef de projet, Ollama écoutait par défaut sur toutes les interfaces réseau ; il a été restreint à 127.0.0.1, conformément à la règle de sécurité du guide. Restent à relever à la séance : les commits de chaque membre (⟦à relever avec git shortlog -sn⟧) et l'installation d'Ollama chez Assia, Jihane et Marwane (⟦à confirmer en séance⟧).",
+ "questions": [
+  "Dans les parties LLM, l'adversaire d'un agent est-il une stratégie classique comme TFT (notre choix par défaut), ou un second agent LLM ?",
+  "Les essais lourds peuvent-ils être faits sur un GPU gratuit (Google Colab) avec le même Ollama et les mêmes modèles, à condition de le consigner ?"
+ ],
+ "plan": "La semaine 5 est consacrée au protocole complet : au moins 10 parties de 10 manches par configuration (deux modèles, horizon annoncé ou non) contre TFT, la fréquence de coopération par manche comparée à TFT et à la prédiction de l'induction à rebours, le comptage des réponses hors format, et les classements selon ε et le réplicateur sur 30 graines avec intervalles de confiance.",
+ "annexe": {
+  "titre": "Annexe : diagramme de Gantt prévu et réalisé à la fin de la semaine 4",
+  "image": "docs/gantt_realise.png",
+  "legende": "Prévu en gris, réalisé en vert (terminé) ou orange (en cours), à la fin de la semaine 4."
+ }
+}

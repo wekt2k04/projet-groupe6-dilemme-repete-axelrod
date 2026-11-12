@@ -1,0 +1,16 @@
+{"meta": true, "modele": "llama3.1", "materiel": "Colab_T4_GPU", "note": "essais joues sur Google Colab par scripts/essai_agent_ollama.py (controle tolerant sur le type des nombres) ; seuls l'outil appele, le controle et la duree ont ete rapatries (pas les arguments ni les reponses)"}
+{"modele": "llama3.1", "question_id": "Q1", "essai": 1, "outils_appeles": ["tournoi_axelrod"], "controle_ok": true, "duree_s": 5.6}
+{"modele": "llama3.1", "question_id": "Q1", "essai": 2, "outils_appeles": ["tournoi_axelrod"], "controle_ok": true, "duree_s": 3.9}
+{"modele": "llama3.1", "question_id": "Q1", "essai": 3, "outils_appeles": ["tournoi_axelrod"], "controle_ok": true, "duree_s": 3.9}
+{"modele": "llama3.1", "question_id": "Q2", "essai": 1, "outils_appeles": ["seuils_actualisation"], "controle_ok": true, "duree_s": 3.5}
+{"modele": "llama3.1", "question_id": "Q2", "essai": 2, "outils_appeles": ["seuils_actualisation"], "controle_ok": true, "duree_s": 4.2}
+{"modele": "llama3.1", "question_id": "Q2", "essai": 3, "outils_appeles": ["seuils_actualisation"], "controle_ok": true, "duree_s": 4.2}
+{"modele": "llama3.1", "question_id": "Q3", "essai": 1, "outils_appeles": ["replicateur"], "controle_ok": true, "duree_s": 11.3}
+{"modele": "llama3.1", "question_id": "Q3", "essai": 2, "outils_appeles": ["replicateur"], "controle_ok": true, "duree_s": 8.9}
+{"modele": "llama3.1", "question_id": "Q3", "essai": 3, "outils_appeles": ["replicateur"], "controle_ok": true, "duree_s": 9.0}
+{"modele": "llama3.1", "question_id": "Q4", "essai": 1, "outils_appeles": ["tournoi_axelrod", "tournoi_axelrod"], "controle_ok": true, "duree_s": 13.8}
+{"modele": "llama3.1", "question_id": "Q4", "essai": 2, "outils_appeles": ["tournoi_axelrod", "tournoi_axelrod"], "controle_ok": true, "duree_s": 12.5}
+{"modele": "llama3.1", "question_id": "Q4", "essai": 3, "outils_appeles": ["tournoi_axelrod", "tournoi_axelrod"], "controle_ok": true, "duree_s": 12.6}
+{"modele": "llama3.1", "question_id": "Q5", "essai": 1, "outils_appeles": [], "controle_ok": true, "duree_s": 2.3}
+{"modele": "llama3.1", "question_id": "Q5", "essai": 2, "outils_appeles": [], "controle_ok": true, "duree_s": 2.2}
+{"modele": "llama3.1", "question_id": "Q5", "essai": 3, "outils_appeles": [], "controle_ok": true, "duree_s": 2.1}
