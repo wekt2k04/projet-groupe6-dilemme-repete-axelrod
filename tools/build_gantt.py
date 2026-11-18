@@ -55,8 +55,10 @@ AVANCEMENT = {
     "Fiche de lecture théorique": (1, 1, "Terminé"),
     "Dépôt GitHub, Ollama, conventions": (1, 1, "Terminé"),
     "Gantt prévisionnel": (1, 1, "Terminé"),
-    "Formules, hypothèses, seuils δ (1/2 et 2/3)": (1, 1, "En cours"),
-    "jeux.py : match, tournoi, réplicateur": (1, 1, "En cours"),
+    "Formules, hypothèses, seuils δ (1/2 et 2/3)": (1, 2, "Terminé"),
+    "jeux.py : match, tournoi, réplicateur": (1, 2, "Terminé"),
+    "Notebook 01 : retrouver les résultats du cours": (2, 2, "Terminé"),
+    "Tests pytest et seuil δ par Monte-Carlo": (2, 2, "En cours"),
 }
 
 
