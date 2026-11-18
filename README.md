@@ -4,6 +4,8 @@ Projet intégrateur n° 6 du module Théorie des Jeux et Systèmes Multi-Agents 
 
 Groupe 6 : MARZAQ Jihane, SADOUR Assia, TSETSE Komla Edem Wilfried, ZERBAOUI Marwane.
 
+Calcul sur GPU gratuit (parties LLM et essais de l'agent, environ cinq minutes au lieu d'une heure) : [![Ouvrir dans Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/wekt2k04/projet-groupe6-dilemme-repete-axelrod/blob/prep/passation/notebooks/00_colab_ollama.ipynb)
+
 ## Sujet
 
 On simule un tournoi entre six stratégies du dilemme du prisonnier répété (toujours coopérer, toujours trahir, tit-for-tat, rancunier, Pavlov, aléatoire), on mesure l'effet du bruit et l'évolution d'une population par la dynamique du réplicateur, puis on fait jouer des agents LLM locaux (Ollama) et on compare leur comportement aux stratégies classiques. Le lien avec le cours : à horizon fini connu, l'induction à rebours prédit la trahison à chaque manche.

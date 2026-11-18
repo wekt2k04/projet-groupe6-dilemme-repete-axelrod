@@ -13,7 +13,7 @@ Fichier de pilotage : ce qui est fait, ce qui reste, qui le fait, avec quelles c
 
 0. Identifier l'utilisateur (lui demander son prénom s'il ne l'a pas donné) : identité Git et accord avant de pousser en dépendent (§10).
 1. Lire ce fichier, puis `docs/COMPRENDRE.md` et `CONVENTIONS.md`.
-2. Installer (`pip install -r requirements.txt`) et lancer `python -m pytest` à la racine. Sur `main` à l'état S1 : **8 tests verts** (`tests/test_jeux.py`). Sinon, corriger avant tout.
+2. Installer (`pip install -r requirements.txt`) et lancer `python -m pytest` à la racine. Sur `main` à l'état S1 : **8 tests verts** ; sur `prep/s2` 25, `prep/s3` 41, `prep/s4` 63, `prep/s5` et au-delà **74**. Sinon, corriger avant tout.
 3. Lire §7 (état) et §8 (plan) ; reprendre à la première case non cochée.
 4. Ne rien faire de visible par d'autres (push, PR, invitation, message) sans l'accord de l'utilisateur.
 5. Avant de terminer : mettre à jour §7 et §11.
@@ -71,7 +71,9 @@ Barème : mini-comptes rendus 20 %, code et théorie 25 %, agents et expérience
 | Bruit | indépendant pour chaque joueur et chaque coup ; les historiques contiennent les coups exécutés | figé |
 | Scores | gains moyens par manche, jamais de totaux | figé |
 | Seuil de TFT | 2/3 (déviation alternée T,S,T,S) ; seuil du rancunier 1/2 | figé, vérifié par calcul ; Monte-Carlo pour le rancunier |
-| Emplacement de l'agent | `src/agent_tj_sma.py` (l'annexe A du guide le place à la racine) | proposé |
+| Emplacement de l'agent | `src/agent_tj_sma.py` (l'annexe A du guide le place à la racine) | figé |
+| Calcul des parties LLM | GPU gratuit (Google Colab T4) accepté : même Ollama, mêmes modèles (empreintes consignées), matériel noté dans chaque fichier ; reproductibilité CPU contre GPU vérifiée sur 6 parties | figé |
+| Unité statistique des parties LLM | la partie (bootstrap sur les parties) ; 3 trajectoires distinctes sur 10 parties par configuration | figé |
 | Code du cours | absent de nos supports : l'agent est reconstruit d'après le guide | **à trancher** (le demander au professeur) |
 | Adversaire d'un agent LLM | stratégie classique (TFT en priorité) ; LLM contre LLM en option | proposé, question posée au professeur |
 | Modèles Ollama | llama3.1 et qwen2.5 | proposé |
@@ -97,14 +99,25 @@ Contrats actuels de `src/jeux.py` : `match(s1, s2, manches=200, bruit=0.0, rng=N
 
 Régénérer les documents : `python tools/build_gantt.py`, `python tools/build_gantt_realise.py <semaine>`, `python tools/build_avancement.py <semaine>`, `pandoc docs/fiche_lecture.md -o docs/fiche_lecture.pdf --pdf-engine=xelatex`.
 
-## 7. État (S1, 12/11/2026)
+## 7. État (12/11/2026)
 
-- [x] Dépôt privé créé ; invitations (droit d'écriture) envoyées à `as7ia`, `jihane-marzaq`, `MarwaneZe` ; acceptation en attente.
-- [x] Prototype `src/jeux.py` et 8 tests : `python -m pytest` donne 8 passed.
-- [x] Fiche de lecture (2 pages), Gantt prévisionnel et source xlsx, point d'avancement S1 (4 pages : garde, 2 pages, annexe), `COMPRENDRE.md`, `MATIERE.md`.
-- [x] Ollama sur le poste de Wilfried, restreint à 127.0.0.1 ; modèles llama3.1 et qwen2.5 téléchargés.
-- [ ] Installation d'Ollama et premier commit nominatif chez Assia, Jihane et Marwane.
-- Non vérifié : aucune partie LLM n'a été jouée. Scripté : rien pour l'instant.
+**Sur `main` (S1)**
+- [x] Dépôt privé ; invitations (droit d'écriture) envoyées à `as7ia`, `jihane-marzaq`, `MarwaneZe` : acceptation en attente.
+- [x] Prototype `src/jeux.py` et 8 tests ; fiche de lecture ; Gantt prévisionnel et source xlsx ; point d'avancement S1 ; `COMPRENDRE.md`, `MATIERE.md`.
+
+**Préparé sur les branches `prep/s2` à `prep/s7` (jamais fusionnées ; chaque membre récupère ses fichiers, voir `docs/semaines/`)**
+- [x] S2 : `jeux.py` final, 25 tests, notebook 01 exécuté (seuil 1/2 retrouvé par simulation : +0,655 ± 0,009 à δ = 0,4, −0,016 ± 0,012 à 0,5, −0,997 ± 0,016 à 0,6).
+- [x] S3 : trois outils `@tool` plafonnés, faux modèle « scripté », 41 tests, notebook 02.
+- [x] S4 : joueur LLM, scripts Ollama, contrôles de l'agent, 63 tests, essais réels de l'agent (30/30 conformes sur GPU).
+- [x] S5 : `experiences.py`, notebook 03 (30 graines), parties LLM réelles (4 configurations × 10 parties), 74 tests.
+- [x] S6 et S7 : sections du rapport, outil d'archivage, points d'avancement : **rédigés à l'avance, à relire et adapter par chaque membre**.
+- Chaque semaine a sa fiche `docs/semaines/SN.md` et son point d'avancement `docs/avancement/SN.pdf` (garde, 2 pages, annexe Gantt).
+
+**Résultats réels (Ollama)** : fichiers `resultats/llm_*_TFT.jsonl` (GPU T4, Colab) et `*_local_cpu*.jsonl` (CPU, 6 parties identiques aux parties GPU de mêmes graines). Réponses brutes complètes des parties Colab non rapatriées.
+
+**Scripté** : tous les tests de `tests/test_hors_ligne.py` (faux modèle). **Non vérifié** : le contenu de S6 et S7 est anticipé ; les faits dépendant d'événements futurs sont des emplacements ⟦…⟧.
+
+**À faire par les membres** : accepter l'invitation ; Ollama chez chacun ; premier commit nominatif (`docs/membres/`) ; relire et commiter ses fichiers chaque semaine ; relever les commits (`git shortlog -sn`) avant chaque séance.
 
 ## 8. Plan en étapes atomiques
 
@@ -140,6 +153,8 @@ Auto-jeu oublié ; bruit appliqué à un seul joueur ; totaux comparés sur des 
 ## 11. Journal
 
 - 12/11/2026 : socle S1 : structure, conventions, prototype `jeux.py` (8 tests), fiche de lecture, Gantt, point d'avancement S1, `COMPRENDRE.md`, `MATIERE.md`. Dépôt privé créé, trois invitations envoyées. Ollama restreint à 127.0.0.1, llama3.1 et qwen2.5 téléchargés.
+
+- 12/11/2026 : préparation des branches `prep/s2` à `prep/s7` (voir §7). Découvertes : un bug de notre propre contrôle d'essai (`round` sur une chaîne) a masqué trois essais ; llama3.1 écrit des nombres en chaînes (l'outil les convertit) ; les modèles sont quasi déterministes (3 trajectoires distinctes sur 10 parties) ; les parties CPU et GPU de mêmes graines coïncident ; Colab lié à un dépôt privé exigerait un accès à tous les dépôts privés : non accordé, résultats rapatriés sous forme compacte.
 
 ## 12. Guide du membre
 
